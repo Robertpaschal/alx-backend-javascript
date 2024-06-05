@@ -1,0 +1,1 @@
+In this directory, I am learning Typescript, how it works and it's syntax
