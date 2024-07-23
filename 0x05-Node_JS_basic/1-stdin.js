@@ -13,8 +13,3 @@ process.stdin.on('data', (input) => {
   process.stdout.write('This important software is now closing\n');
   process.exit();
 });
-
-process.on('SIGINT', () => {
-  process.stdout.write('/nThis important software is now closing\n');
-  process.exit();
-});
