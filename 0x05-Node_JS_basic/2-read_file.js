@@ -1,8 +1,8 @@
 #!/usr/bin/env node
+const fs = require('fs');
 /**
  * Reads a database synchronously
  */
-const fs = require('fs');
 
 function countStudents (path) {
   try {
