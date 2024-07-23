@@ -1,7 +1,8 @@
-#!/usr/bin/env node
 const fs = require('fs');
 /**
  * Reads a database synchronously
+ * @param {string} data The path to the CSV data file
+ * @author Odinaka Nnamani
  */
 
 function countStudents (path) {
