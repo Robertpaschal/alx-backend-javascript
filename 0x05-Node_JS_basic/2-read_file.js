@@ -4,7 +4,7 @@ const fs = require('fs');
  * Reads a database synchronously
  */
 
-function countStudents(path) {
+function countStudents (path) {
   try {
     const data = fs.readFileSync(path, 'utf8');
     const lines = data.split('\n').filter(line => line.trim() !== '');
