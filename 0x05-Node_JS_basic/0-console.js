@@ -2,7 +2,7 @@
 /**
  * Displays a message on the STDOUT
  */
-function displayMessage(message) {
+function displayMessage (message) {
   console.log(message);
 }
 
