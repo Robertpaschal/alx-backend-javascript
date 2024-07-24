@@ -107,3 +107,22 @@ mandatory
 > calculateNumber('DIVIDE', 1.4, 0)
 'Error'
 ```
+
++ [x] **2. Basic test using Chai assertion library**<br/>
+mandatory
+While using Node assert library is completely valid, a lot of developers prefer to have a behavior driven development style. This type being easier to read and therefore to maintain.
+
++ [x] **Let’s install Chai with npm:**<br/>
+
++ Copy the file `1-calcul.js` in a new file [2-calcul_chai.js](2-calcul_chai.js) (same content, same behavior)
++ Copy the file `1-calcul.test.js` in a new file [2-calcul_chai.test.js](2-calcul_chai.test.js)
++ Rewrite the test suite, using `expect` from `Chai`
+
+**Tips:**<br/>
+
++ Remember that test coverage is always difficult to maintain. Using an easier style for your tests will help you
++ The easier your tests are to read and understand, the more other engineers will be able to fix them when they are modifying your code
+**Requirements:**<br/>
+
++ You should be able to run the test suite using `npm test 2-calcul_chai.test.js`
++ Every test should pass without any warning
