@@ -1,4 +1,3 @@
-// eslint.config.js
 import globals from 'globals';
 import airbnbBase from 'eslint-config-airbnb-base';
 import pluginJest from 'eslint-plugin-jest';
