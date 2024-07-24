@@ -14,10 +14,10 @@ In this project, I dove deep into unittesting in Javascript. At the end of this 
 + [x] 0. **Basic test with Mocha and Node assertion library**<br/>
 
 `mandatory`
-+ [x]Install Mocha using npm:
++ [x] **Install Mocha using** `npm`**:**
 
 + Set up a scripts in your `package.json` to quickly run Mocha using `npm test`
-+ You have to use assert
++ You have to use `assert`
 
 + [x] Create a new file named [0-calcul.js](0-calcul.js):
 
@@ -26,7 +26,7 @@ In this project, I dove deep into unittesting in Javascript. At the end of this 
 
 + [x] Test cases
 
-+ Create a file 0-calcul.test.js that contains test cases of this function
++ Create a file [0-calcul.test.js](0-calcul.test.js) that contains test cases of this function
 + You can assume a and b are always number
 + Tests should be around the “rounded” part
 
@@ -71,11 +71,11 @@ bob@dylan:~$ npm test 0-calcul.test.js
 bob@dylan:~$ 
 ```
 
-+ [x] 1. **Combining descriptions**<br/>[1-calcul.js](1-calcul.js)[1-calcul.test.js](1-calcul.test.js)
++ [x] 1. **Combining descriptions**[1-calcul.js](1-calcul.js)      [1-calcul.test.js](1-calcul.test.js)<br/>
 `mandatory`
 + [x] Create a new file named 1-calcul.js:
 
-+ Upgrade the function you created in the previous task (`0-calcul.js`)
++ Upgrade the function you created in the previous task ([0-calcul.js](0-calcul.js))
 + Add a new argument named type at first argument of the function. `type` can be `SUM`, `SUBTRACT`, or `DIVIDE` (string)
 + When type is `SUM`, round the two numbers, and add `a` and `b`
 + When type is `SUBTRACT`, round the two numbers, and subtract `b` from `a`
@@ -95,7 +95,7 @@ bob@dylan:~$
 + You should be able to run the test suite using `npm test 1-calcul.test.js`
 + Every test should pass without any warning
 
-+[x] Expected output
++ [x] Expected output
 ```sh
 > const calculateNumber = require("./1-calcul.js");
 > calculateNumber('SUM', 1.4, 4.5)
@@ -109,7 +109,7 @@ bob@dylan:~$
 ```
 
 + [x] **2. Basic test using Chai assertion library**<br/>
-`mandatory`
+`mandatory`<br/>
 While using Node assert library is completely valid, a lot of developers prefer to have a behavior driven development style. This type being easier to read and therefore to maintain.
 
 + [x] **Let’s install Chai with npm:**<br/>
@@ -128,7 +128,7 @@ While using Node assert library is completely valid, a lot of developers prefer 
 + Every test should pass without any warning
 
 + [x] **3. Spies**<br/>
-`mandatory`
+`mandatory`<br/>
 Spies are a useful wrapper that will execute the wrapped function, and log useful information (e.g. was it called, with what arguments). Sinon is a library allowing you to create spies.
 
 **Let’s install Sinon with npm:**
@@ -138,7 +138,7 @@ Spies are a useful wrapper that will execute the wrapped function, and log usefu
 + Create a property named `calculateNumber` and paste your previous code in the function
 + Export the Utils module
 
-+ [x] **Create a new file named**<br/> [3-payment.js](3-payment.js):
++ [x] **Create a new file named [3-payment.js](3-payment.js):**
 
 + Create a new function named `sendPaymentRequestToApi`. The function takes two argument `totalAmount`, and `totalShipping`
 + The function calls the `Utils.calculateNumber` function with type `SUM`, `totalAmount` as `a`, `totalShipping` as `b` and display in the console the message `The total is: <result of the sum>`
@@ -147,20 +147,20 @@ Spies are a useful wrapper that will execute the wrapped function, and log usefu
 
 + By using `sinon.spy`, make sure the math used for `sendPaymentRequestToApi(100, 20)` is the same as `Utils.calculateNumber('SUM', 100, 20)` (validate the usage of the `Utils` function)
 
-+[x] **Requirements:**
++ [x] **Requirements:**
 
 + You should be able to run the test suite using `npm test 3-payment.test.js`
 + Every test should pass without any warning
 + You should use a `spy` to complete this exercise
 
-+[x]**Tips:**
++ [x]**Tips:**
 
 + Remember to always restore a spy after using it in a test, it will prevent you from having weird behaviors
 + Spies are really useful and allow you to focus only on what your code is doing and not the downstream APIs or functions
 + Remember that integration test is different from unit test. Your unit test should test your code, not the code of a different function
 
-+[x]**4. Stubs**<br/>
-`mandatory`
++ [x]**4. Stubs**<br/>
+`mandatory`<br/>
 Stubs are similar to spies. Except that you can provide a different implementation of the function you are wrapping. Sinon can be used as well for stubs.
 **Create a new file [4-payment.js](4-payment.js), and copy the code from [3-payment.js](3-payment.js)** (same content, same behavior)
 
@@ -182,7 +182,7 @@ Stubs are similar to spies. Except that you can provide a different implementati
 + Using stubs allows you to control specific edge case (e.g a function throwing an error or returning a specific result like a number or a timestamp)
 
 + [x] **5. Hooks**<br/>
-`mandatory`
+`mandatory`<br/>
 Hooks are useful functions that can be called before execute one or all tests in a suite
 
 **Copy the code from [4-payment.js](4-payment.js) into a new file [5-payment.js](5-payment-js):** (same content/same behavior)
@@ -191,11 +191,11 @@ Hooks are useful functions that can be called before execute one or all tests in
 
 + [x] Inside the same `describe`, create 2 tests:
 + The first test will call `sendPaymentRequestToAPI` with 100, and 20:
-++ Verify that the console is logging the string `The total is: 120`
-++ Verify that the console is only called once
++ Verify that the console is logging the string `The total is: 120`
++ Verify that the console is only called once
 + The second test will call `sendPaymentRequestToAPI` with 10, and 10:
-++ Verify that the console is logging the string `The total is: 20`
-++ Verify that the console is only called once
++ Verify that the console is logging the string `The total is: 20`
++ Verify that the console is only called once
 **Requirements:**
 
 + You should be able to run the test suite using `npm test 5-payment.test.js`
@@ -203,8 +203,8 @@ Hooks are useful functions that can be called before execute one or all tests in
 + You should use only one `spy` to complete this exercise
 + You should use a `beforeEach` and a `afterEach` hooks to complete this exercise
 
-+ [x] **6. Async tests with done**
-`mandatory`
++ [x] **6. Async tests with done**<br/>
+`mandatory`<br/>
 Look into how to support async testing, for example when waiting for the answer of an API or from a Promise
 
 **Create a new file [6-payment_token.js](6-payment_token.js):**
@@ -212,7 +212,7 @@ Look into how to support async testing, for example when waiting for the answer 
 + Create a new function named `getPaymentTokenFromAPI`
 + The function will take an argument called `success` (boolean)
 + When `success` is true, it should return a resolved promise with the object `{data: 'Successful response from the API' }`
-+ Otherwise, the function is doing nothing.
++ Otherwise, the function is doing nothing.<br/>
 **Create a new file [6-payment_token.test.js](6-payment_token.test.js) and write a test suite named `getPaymentTokenFromAPI`**
 
 + How to test the result of `getPaymentTokenFromAPI(true)`?
@@ -227,7 +227,7 @@ Look into how to support async testing, for example when waiting for the answer 
 + You should use the `done` callback to execute this test
 
 + [x] **7. Skip**<br/>
-`mandatory`
+`mandatory`<br/>
 When you have a long list of tests, and you can’t figure out why a test is breaking, avoid commenting out a test, or removing it. **Skip**<br/> it instead, and file a ticket to come back to it as soon as possible
 
 You will be using this file, conveniently named `7-skip.test.js`
@@ -278,3 +278,75 @@ describe('Testing numbers', () => {
 **Requirements:**
 + You should be able to run the test suite using `npm test 7-skip.test.js`
 + Every test should pass without any warning
+
++ [x] **8. Basic Integration testing**<br/>
+`mandatory`<br/>
+In a folder [8-api](8-api) located at the root of the project directory, copy this `package.json` over.
+```json
+{
+  "name": "8-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "request": "^2.88.0",
+    "sinon": "^7.5.0"
+  }
+}
+```
+**Create a new file [api.js](api-js):**<br/>
++ By using `express`, create an instance of `express` called `app`
++ Listen to port 7865 and log `API available on localhost port 7865` to the browser console when the `express` server is started
++ For the route `GET /`, return the message `Welcome to the payment system`<br/>
+
+**Create a new file [api.test.js](api.test.js):**<br/>
++ Create one suite for the index page:
+-- + Correct status code?
+-- + Correct result?
+-- + Other?<br/>
+
+**Server**
+Terminal 1
+```sh
+bob@dylan:~/8-api$  node api.js
+API available on localhost port 7865
+```
+Terminal 2
+```sh
+bob@dylan:~/8-api$  curl http://localhost:7865 ; echo ""
+Welcome to the payment system
+bob@dylan:~/8-api$  
+bob@dylan:~/8-api$ npm test api.test.js
+
+> 8-api@1.0.0 test /root/8-api
+> ./node_modules/mocha/bin/mocha "api.test.js"
+
+
+
+  Index page
+    ✓ ...
+    ✓ ...
+    ...
+
+  23 passing (256ms)
+
+bob@dylan:~/8-api$
+```
+
+**Tips:**
++ Since this is an integration test, you will need to have your node server running for the test to pass
++ You can use the module `request`<br/>
+
+**Requirements:**
++ You should be able to run the test suite using `npm test api.test.js`
++ Every test should pass without any warnings
