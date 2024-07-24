@@ -1,42 +1,14 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const app = require('./api');
-const { expect } = chai;
+const request = require('request');
+const { expect } = require('chai');
 
-chai.use(chaiHttp);
+describe('API integration test', () => {
+  const API_URL = 'http://localhost:7865';
 
-describe('Index Page', function() {
-    let serverInstance;
-
-    before((done) => {
-        serverInstance = app.listen(7865, () => {
-            console.log('Test server running on port 7865');
-            done();
-        });
+  it('GET / returns correct response', (done) => {
+    request.get(`${API_URL}/`, (_err, res, body) => {
+      expect(res.statusCode).to.be.equal(200);
+      expect(body).to.be.equal('Welcome to the payment system');
+      done();
     });
-
-    after((done) => {
-        serverInstance.close(() => {
-            console.log('Test server stopped');
-            done();
-        });
-    });
-
-    it('should return status code 200', function(done) {
-        chai.request(serverInstance)
-        .get('/')
-        .end((err, res) => {
-            expect(res).to.have.status(200);
-            done();
-        });
-    });
-
-    it('should return the correct message', function(done) {
-        chai.request(serverInstance)
-        .get('/')
-        .end((err,res) => {
-            expect(res.text).to.equal('Welcome to the payment system');
-            done();
-        });
-    });
+  });
 });
