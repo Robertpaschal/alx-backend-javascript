@@ -153,15 +153,15 @@ Spies are a useful wrapper that will execute the wrapped function, and log usefu
 + Every test should pass without any warning
 + You should use a `spy` to complete this exercise
 
-+ [x]**Tips:**
++ [x] **Tips:**
 
 + Remember to always restore a spy after using it in a test, it will prevent you from having weird behaviors
 + Spies are really useful and allow you to focus only on what your code is doing and not the downstream APIs or functions
 + Remember that integration test is different from unit test. Your unit test should test your code, not the code of a different function
 
-+ [x]**4. Stubs**<br/>
++ [x] **4. Stubs**<br/>
 `mandatory`<br/>
-Stubs are similar to spies. Except that you can provide a different implementation of the function you are wrapping. Sinon can be used as well for stubs.
+Stubs are similar to spies. Except that you can provide a different implementation of the function you are wrapping. Sinon can be used as well for stubs.<br/>
 **Create a new file [4-payment.js](4-payment.js), and copy the code from [3-payment.js](3-payment.js)** (same content, same behavior)
 
 **Create a new file [4-payment.test.js](4-payment.test.js), and copy the code from [3-payment.test.js](3-payment.test.js)**
@@ -311,11 +311,11 @@ In a folder [8-api](8-api) located at the root of the project directory, copy th
 
 **Create a new file [api.test.js](api.test.js):**<br/>
 + Create one suite for the index page:
--- + Correct status code?
--- + Correct result?
--- + Other?<br/>
++ Correct status code?
++ Correct result?
++ Other?<br/>
 
-**Server**
+**Server**<br/>
 Terminal 1
 ```sh
 bob@dylan:~/8-api$  node api.js
@@ -350,3 +350,110 @@ bob@dylan:~/8-api$
 **Requirements:**
 + You should be able to run the test suite using `npm test api.test.js`
 + Every test should pass without any warnings
+
++ [x] **9. Regex integration testing**<br/>
+`mandatory`<br/>
+In a folder `9-api`, reusing the previous project in `8-api` (`package.json`, `api.js` and `api.test.js`)
+
+**Modify the file [api.js](9-api/api.js):**
+
++ Add a new endpoint: `GET /cart/:id`
++ `:id` must be only a number (validation must be in the route definition)
++ When access, the endpoint should return `Payment methods for cart :id`<br/>
+**Modify the file [api.test.js](9-api/api.test.js):**<br/>
+
++ Add a new test suite for the cart page:
+-- + Correct status code when `:id` is a number?
+-- + Correct status code when `:id` is NOT a number (=> 404)?
+etc.
+
+**Server**
+
+Terminal 1
+```sh
+bob@dylan:~$ node api.js
+API available on localhost port 7865
+```
+Terminal 2
+```sh
+bob@dylan:~$ curl http://localhost:7865/cart/12 ; echo ""
+Payment methods for cart 12
+bob@dylan:~$ 
+bob@dylan:~$ curl http://localhost:7865/cart/hello -v
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 7865 (#0)
+> GET /cart/hello HTTP/1.1
+> Host: localhost:7865
+> User-Agent: curl/7.58.0
+> Accept: */*
+> 
+< HTTP/1.1 404 Not Found
+< X-Powered-By: Express
+< Content-Security-Policy: default-src 'none'
+< X-Content-Type-Options: nosniff
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 149
+< Date: Wed, 15 Jul 2020 08:33:44 GMT
+< Connection: keep-alive
+< 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /cart/hello</pre>
+</body>
+</html>
+* Connection #0 to host localhost left intact
+bob@dylan:~$
+```
+**Tips:**<br/>
++ You will need to add a small regex in your path to support the usecase
+
+**Requirements:**<br/>
++ You should be able to run the test suite using `npm test api.test.js`
++ Every test should pass without any warning
+
++ [x] **10. Deep equality & Post integration testing**<br/>
+`mandatory`<br/>
+In a folder `10-api`, reusing the previous project in `9-api` (`package.json`, `api.js` and `api.test.js`)
+
+**Modify the file [api.js](10-api/api.js):**
+
+Add an endpoint GET /available_payments that returns an object with the following structure:
+{
+  payment_methods: {
+    credit_cards: true,
+    paypal: false
+  }
+}
+Add an endpoint POST /login that returns the message Welcome :username where :username is the value of the body variable userName.
+Modify the file api.test.js:
+
+Add a test suite for the /login endpoint
+Add a test suite for the /available_payments endpoint
+Server
+
+Terminal 1
+
+bob@dylan:~$ node api.js
+API available on localhost port 7865
+Terminal 2
+
+bob@dylan:~$ curl http://localhost:7865/available_payments ; echo ""
+{"payment_methods":{"credit_cards":true,"paypal":false}}
+bob@dylan:~$ 
+bob@dylan:~$ curl -XPOST http://localhost:7865/login -d '{ "userName": "Betty" }' -H 'Content-Type: application/json' ; echo ""
+Welcome Betty
+bob@dylan:~$ 
+Tips:
+
+Look at deep equality to compare objects
+Requirements:
+
+You should be able to run the test suite using npm test api.test.js
+Every test should pass without any warning
+Your server should not display any error
