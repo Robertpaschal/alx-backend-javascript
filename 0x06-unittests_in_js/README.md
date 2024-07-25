@@ -363,11 +363,11 @@ In a folder `9-api`, reusing the previous project in `8-api` (`package.json`, `a
 **Modify the file [api.test.js](9-api/api.test.js):**<br/>
 
 + Add a new test suite for the cart page:
--- + Correct status code when `:id` is a number?
--- + Correct status code when `:id` is NOT a number (=> 404)?
-etc.
++ Correct status code when `:id` is a number?
++ Correct status code when `:id` is NOT a number (=> 404)?
++ etc.
 
-**Server**
+**Server**<br/>
 
 Terminal 1
 ```sh
@@ -423,37 +423,42 @@ In a folder `10-api`, reusing the previous project in `9-api` (`package.json`, `
 
 **Modify the file [api.js](10-api/api.js):**
 
-Add an endpoint GET /available_payments that returns an object with the following structure:
++ Add an endpoint `GET /available_payments` that returns an object with the following structure:
+```json
 {
   payment_methods: {
     credit_cards: true,
     paypal: false
   }
 }
-Add an endpoint POST /login that returns the message Welcome :username where :username is the value of the body variable userName.
-Modify the file api.test.js:
+```
++ Add an endpoint `POST /login` that returns the message `Welcome :username` where `:username` is the value of the body variable `userName.`
+**Modify the file [api.test.js](10-api/api.test.js):**
 
-Add a test suite for the /login endpoint
-Add a test suite for the /available_payments endpoint
-Server
++ Add a test suite for the `/login` endpoint
++ Add a test suite for the `/available_payments` endpoint<br/>
+
+**Server**<br/>
 
 Terminal 1
-
+```sh
 bob@dylan:~$ node api.js
 API available on localhost port 7865
+```
 Terminal 2
-
+```sh
 bob@dylan:~$ curl http://localhost:7865/available_payments ; echo ""
 {"payment_methods":{"credit_cards":true,"paypal":false}}
 bob@dylan:~$ 
 bob@dylan:~$ curl -XPOST http://localhost:7865/login -d '{ "userName": "Betty" }' -H 'Content-Type: application/json' ; echo ""
 Welcome Betty
 bob@dylan:~$ 
-Tips:
+```
 
-Look at deep equality to compare objects
-Requirements:
+**Tips:**<br/>
++ Look at deep equality to compare objects<br/>
 
-You should be able to run the test suite using npm test api.test.js
-Every test should pass without any warning
-Your server should not display any error
+**Requirements:**<br/>
++ You should be able to run the test suite using `npm test api.test.js`
++ Every test should pass without any warning
++ Your server should not display any error
